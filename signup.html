@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Style for the loading screen */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            padding-top: 50vh;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading screen -->
+    <div id="loadingScreen" class="loading">Loading...</div>
+
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <!-- Button to toggle password visibility -->
+            <button type="button" id="togglePassword">Show Password</button>
+        </div>
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- Back to login button -->
+    <button id="backToLogin">Back to Login</button>
+
+    <!-- Include the signup script -->
+    <script src="signup-script.js"></script>
+</body>
+</html>
