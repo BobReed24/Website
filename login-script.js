@@ -1,7 +1,9 @@
+// login-script.js
+
 // Function to authenticate a user
 async function authenticateUser(username, password) {
     try {
-        const response = await fetch('/login', { // Updated URL to reflect the public folder
+        const response = await fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
