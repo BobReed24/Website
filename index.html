@@ -15,10 +15,9 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: none; /* Hide both login and logout buttons initially */
         }
         #logout-button {
-            margin-left: 10px; /* Add margin between buttons */
+            display: none;
         }
         #username-display {
             font-weight: bold;
@@ -35,11 +34,23 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        /* Additional CSS for the login button in the top left corner */
+        #login-top-left {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <!-- Login button -->
-    <button id="login-button">Login</button>
+    <button id="login-button" onclick="window.location.href = 'https://bobreed24.github.io/Website/login';">Login</button>
     <!-- Logout button -->
     <button id="logout-button">Logout</button>
 
