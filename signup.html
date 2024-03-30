@@ -44,7 +44,24 @@
     <!-- Back to login button -->
     <button id="backToLogin">Back to Login</button>
 
-    <!-- Include the signup script -->
-    <script src="signup-script.js"></script>
+    <script>
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.textContent = 'Hide Password';
+            } else {
+                passwordInput.type = 'password';
+                this.textContent = 'Show Password';
+            }
+        });
+
+        // Handle back to login button click
+        document.getElementById('backToLogin').addEventListener('click', function() {
+            // Redirect to login.html
+            window.location.href = 'login.html';
+        });
+    </script>
 </body>
 </html>
