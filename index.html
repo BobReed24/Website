@@ -5,28 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- Include your CSS and other resources -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for the login and logout buttons */
+        #login-button,
+        #logout-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Hide both login and logout buttons initially */
+        }
+        #logout-button {
+            margin-left: 10px; /* Add margin between buttons */
+        }
+        #username-display {
+            font-weight: bold;
+        }
+        /* Additional CSS for the Windows 96 button */
+        #windows96-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <!-- Dark mode toggle button -->
-    <button id="dark-mode-button" class="button fadeIn">🌙</button>
-
-    <!-- Terms of Service button -->
-    <button id="terms-button" class="button fadeIn">Terms of Service</button>
-
-    <div id="buttons-container">
-        <!-- Login button -->
-        <button id="login-button" class="button fadeIn">Login</button>
-        <!-- Logout button -->
-        <button id="logout-button" class="button fadeIn">Logout</button>
-    </div>
+    <!-- Login button -->
+    <button id="login-button">Login</button>
+    <!-- Logout button -->
+    <button id="logout-button">Logout</button>
 
     <!-- Windows 96 button -->
-    <button id="windows96-button" class="button fadeIn">Windows 96</button>
+    <button id="windows96-button">Windows 96</button>
 
     <h1>Welcome to the Homepage</h1>
     <!-- Display the username -->
-    <div id="username-display" class="fadeIn"></div>
+    <div id="username-display"></div>
+
+    <!-- Your homepage content here -->
 
     <!-- Include your JavaScript file -->
     <script src="index-script.js"></script>
