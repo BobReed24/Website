@@ -5,7 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <!-- Include your CSS and other resources -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for layout */
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group .captcha {
+            margin-top: 10px;
+        }
+        .error-message {
+            color: #ff0000;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -33,11 +70,29 @@
 
         <!-- Signup button -->
         <div class="form-group">
-            <button class="signup-button" onclick="window.location.href = 'signup.html';">Sign Up</button>
+            <button class="signup-button" onclick="window.location.href = '/signup.html';">Sign Up</button>
         </div>
 
         <!-- Include your JavaScript file -->
-        <script src="login-script.js"></script>
+        <script src="/login-script.js"></script>
     </div>
+
+    <script>
+        // Generate and display CAPTCHA
+        const captchaQuestion = Math.floor(Math.random() * 10) + ' + ' + Math.floor(Math.random() * 10);
+        document.getElementById('captchaQuestion').textContent = 'Please solve the following CAPTCHA: ' + captchaQuestion;
+
+        // Validate CAPTCHA
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const captchaInput = document.getElementById('captcha').value;
+            const expectedResult = eval(captchaQuestion); // Evaluate the expression
+
+            if (captchaInput != expectedResult) {
+                // CAPTCHA is incorrect, display error message
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
