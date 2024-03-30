@@ -1,3 +1,5 @@
+// signup-script.js
+
 document.addEventListener('DOMContentLoaded', function() {
     const signupForm = document.getElementById('signupForm');
     const loadingScreen = document.getElementById('loadingScreen');
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Simulate loading for 5 seconds
             setTimeout(function() {
                 // Send signup request to the server
-                fetch('/register', { // Updated URL to reflect the public folder
+                fetch('/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
