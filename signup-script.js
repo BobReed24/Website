@@ -12,13 +12,42 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show loading screen
             loadingScreen.style.display = 'block';
 
-            // Send signup request to the server
-            fetch('http://0.tcp.ngrok.io:16098/signup', { // Replace with your server endpoint
-                method: 'POST',
+            // Data to be sent to GitHub
+            const data = {
+                username: username,
+                password: password
+            };
+
+            // Send data to GitHub using fetch
+            fetch('https://api.github.com/repos/bobreed24/users/contents/users.json', {
+                method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username: username, password: password })
+                    'Authorization': '#`XU8({S!Py%9#oJ.i"!V%2[{W)DUS
+', // Replace YOUR_GITHUB_TOKEN with your personal access token
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                const content = atob(json.content); // Decode content from base64
+                const users = JSON.parse(content);
+                users.push(data); // Add new user data
+
+                // Update users.json on GitHub
+                return fetch('https://api.github.com/repos/bobreed24/users/contents/users.json', {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': '#`XU8({S!Py%9#oJ.i"!V%2[{W)DUS
+', // Replace YOUR_GITHUB_TOKEN with your personal access token
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Add new user',
+                        content: btoa(JSON.stringify(users)), // Encode content to base64
+                        sha: json.sha // SHA of the existing users.json file
+                    })
+                });
             })
             .then(response => {
                 if (!response.ok) {
@@ -29,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 // Hide loading screen
                 loadingScreen.style.display = 'none';
-                alert(data.message);
+                alert('Signup successful!');
+
                 // Optionally, redirect to another page after successful signup
                 // window.location.href = '/dashboard.html';
             })
