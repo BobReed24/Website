@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const signupForm = document.getElementById('signupForm');
     const loadingScreen = document.getElementById('loadingScreen');
+    const togglePasswordBtn = document.getElementById('togglePassword');
 
     if (signupForm) {
         signupForm.addEventListener('submit', function(event) {
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingScreen.style.display = 'block';
 
             // Send signup request to the server
-            fetch('http://0.tcp.ngrok.io:10955/register', {
+            fetch('http://0.tcp.ngrok.io:16098/signup', { // Replace with your server endpoint
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -41,4 +42,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         console.error('Signup form not found');
-    });
+    }
+
+    // Handle back to login button click
+    const backToLoginBtn = document.getElementById('backToLogin');
+    if (backToLoginBtn) {
+        backToLoginBtn.addEventListener('click', function() {
+            // Redirect to login.html
+            window.location.href = 'login.html';
+        });
+    } else {
+        console.error('Back to login button not found');
+    }
+
+    // Toggle password visibility
+    if (togglePasswordBtn) {
+        togglePasswordBtn.addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.textContent = 'Hide Password';
+            } else {
+                passwordInput.type = 'password';
+                this.textContent = 'Show Password';
+            }
+        });
+    } else {
+        console.error('Toggle password button not found');
+    }
+});
