@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch('https://api.github.com/repos/bobreed24/users/contents/users.json', {
                 method: 'GET',
                 headers: {
-                    'Authorization': '#`XU8({S!Py%9#oJ.i"!V%2[{W)DUS
+                    'Authorization': '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
 ', // Replace YOUR_GITHUB_TOKEN with your personal access token
                     'Accept': 'application/vnd.github.v3+json'
                 }
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return fetch('https://api.github.com/repos/bobreed24/users/contents/users.json', {
                     method: 'PUT',
                     headers: {
-                        'Authorization': '#`XU8({S!Py%9#oJ.i"!V%2[{W)DUS
+                        'Authorization': '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
 ', // Replace YOUR_GITHUB_TOKEN with your personal access token
                         'Accept': 'application/vnd.github.v3+json',
                         'Content-Type': 'application/json'
