@@ -1,23 +1,25 @@
-// login-script.js
-
 // Function to authenticate a user
 async function authenticateUser(username, password) {
     try {
-        const response = await fetch('/login', {
-            method: 'POST',
+        // Fetch user data from GitHub
+        const response = await fetch('https://api.github.com/repos/bobreed24/users/contents/users.json', {
+            method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
+                'Authorization': 'token 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', // Replace with your GitHub PAT
+                'Accept': 'application/vnd.github.v3+json'
+            }
         });
-        
+
         if (!response.ok) {
-            throw new Error('Authentication failed');
+            throw new Error('Failed to fetch user data');
         }
 
-        const data = await response.json();
+        const userData = await response.json();
+        const users = JSON.parse(atob(userData.content)); // Decode base64 content
 
-        if (data.authenticated) {
+        // Check if username and password match
+        const user = users.find(user => user.username === username && user.password === password);
+        if (user) {
             localStorage.setItem('username', username);
             return true;
         } else {
