@@ -4,8 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (lockdownButton) {
         lockdownButton.addEventListener('click', function() {
-            // Implement lockdown feature here
-            alert('Site is now locked down');
+            // Redirect only users on index.html and windows96page.html to lockdown.html
+            const currentPage = window.location.href;
+            if (currentPage.includes('index.html') || currentPage.includes('windows96page.html')) {
+                window.location.href = 'lockdown.html';
+            } else {
+                console.log('Lockdown does not apply on this page.');
+            }
         });
     } else {
         console.error('Lockdown button not found');
