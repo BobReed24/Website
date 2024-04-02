@@ -32,21 +32,23 @@ async function authenticateUser(username, password) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
+    const loginForm = document.getElementById('secretForm'); // Changed to match the form id in login.html
 
     if (loginForm) {
         loginForm.addEventListener('submit', async function(event) {
             event.preventDefault();
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            // For login.html, there's no username and password fields, so we use the secret field directly
+            const secret = document.getElementById('secret').value;
 
-            const authenticated = await authenticateUser(username, password);
-
-            if (authenticated) {
+            // Check if the secret matches the expected value
+            if (secret === 'HqR5Z0SNgWkYGOaRGz61xxFKbDMKNFWd') {
+                // Redirect to index.html after successful login
                 window.location.href = 'index.html';
             } else {
-                console.error('Invalid username or password');
+                console.error('Invalid secret');
+                // Optionally display an error message
+                // document.getElementById('errorMessage').style.display = 'block';
             }
         });
     } else {
