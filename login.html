@@ -35,9 +35,6 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .form-group .captcha {
-            margin-top: 10px;
-        }
         .error-message {
             color: #ff0000;
             display: none;
@@ -47,56 +44,37 @@
 <body>
     <div class="container">
         <h2>Hunkon Auth Portal</h2>
-        <!-- Login form -->
-        <form id="loginForm">
+        <!-- Secret form -->
+        <form id="secretForm">
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="secret">Secret:</label>
+                <input type="password" id="secret" name="secret" required>
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="captcha">CAPTCHA:</label>
-                <input type="text" id="captcha" name="captcha" required>
-                <div class="captcha" id="captchaQuestion"></div>
-            </div>
-            <button type="submit">Login</button>
+            <button type="submit">Submit Secret</button>
         </form>
 
         <!-- Error message -->
-        <div id="errorMessage" class="error-message">Username, password, or CAPTCHA is incorrect</div>
+        <div id="errorMessage" class="error-message">Incorrect secret</div>
 
         <!-- Include your JavaScript file -->
         <script src="/login-script.js"></script>
     </div>
 
     <script>
-        // Generate and display CAPTCHA
-        const captchaQuestion = Math.floor(Math.random() * 10) + ' + ' + Math.floor(Math.random() * 10);
-        document.getElementById('captchaQuestion').textContent = 'Please solve the following CAPTCHA: ' + captchaQuestion;
-
         // Track number of times login button is clicked
         let loginButtonClicks = 0;
 
-        // Validate CAPTCHA
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        // Validate secret
+        document.getElementById('secretForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const captchaInput = document.getElementById('captcha').value;
-            const expectedResult = eval(captchaQuestion); // Evaluate the expression
+            const secretInput = document.getElementById('secret').value;
 
-            if (captchaInput != expectedResult) {
-                // CAPTCHA is incorrect, display error message
-                document.getElementById('errorMessage').style.display = 'block';
+            // If the secret is entered correctly 4 times, redirect to index-admin.html
+            if (secretInput === 'HqR5Z0SNgWkYGOaRGz61xxFKbDMKNFWd') {
+                window.location.href = 'index-admin.html';
             } else {
-                // Increment login button clicks
-                loginButtonClicks++;
-
-                // If the secret is entered correctly 4 times, redirect to index-admin.html
-                if (loginButtonClicks === 4 && document.getElementById('password').value === '97c2e26812') {
-                    window.location.href = 'index-admin.html';
-                }
+                // Display error message
+                document.getElementById('errorMessage').style.display = 'block';
             }
         });
     </script>
