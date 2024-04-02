@@ -5,12 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'windows96page.html';
     });
 
-    // Add event listener to the Debug button
-    document.getElementById('debug-button').addEventListener('click', function() {
-        // Open a new window with Windows Command Prompt
-        window.open('cmd.exe');
-    });
-
     var loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(event) {
