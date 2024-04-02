@@ -25,30 +25,21 @@
             font-weight: bold;
         }
 
-        /* Additional CSS for the Windows 96 button */
-        #windows96-button {
+        /* Additional CSS for the buttons */
+        .button-container {
             position: absolute;
             top: 10px;
             right: 10px;
+        }
+
+        .button-container button {
             background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-
-        /* Additional CSS for the Flappy Bird button */
-        #flappy-bird-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: #ff5733;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            margin-left: 10px;
         }
 
         /* Additional CSS for the background image */
@@ -66,11 +57,13 @@
     <!-- Logout button -->
     <button id="logout-button">Logout</button>
 
-    <!-- Flappy Bird button -->
-    <button id="flappy-bird-button" onclick="window.location.href = 'flappybird.html';">Flappy Bird</button>
-
-    <!-- Windows 96 button -->
-    <button id="windows96-button">Windows 96</button>
+    <!-- Button container -->
+    <div class="button-container">
+        <!-- Windows 96 button -->
+        <button id="windows96-button">Windows 96</button>
+        <!-- Flappy Bird button -->
+        <button onclick="window.location.href = 'flappybird.html';">Flappy Bird</button>
+    </div>
 
     <h1>Welcome to the Homepage</h1>
     <!-- Display the username -->
