@@ -48,7 +48,7 @@
         <form id="secretForm">
             <div class="form-group">
                 <label for="secret">Secret:</label>
-                <input type="password" id="secret" name="secret" required>
+                <input type="text" id="secret" name="secret" required>
             </div>
             <button type="submit">Submit Secret</button>
         </form>
@@ -57,26 +57,12 @@
         <div id="errorMessage" class="error-message">Incorrect secret</div>
 
         <!-- Include your JavaScript file -->
-        <script src="/login-script.js"></script>
+        <script src="login-script.js"></script>
     </div>
 
     <script>
         // Track number of times login button is clicked
         let loginButtonClicks = 0;
-
-        // Validate secret
-        document.getElementById('secretForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const secretInput = document.getElementById('secret').value;
-
-            // If the secret is entered correctly, redirect to index.html
-            if (secretInput === 'HqR5Z0SNgWkYGOaRGz61xxFKbDMKNFWd') {
-                window.location.href = 'index.html';
-            } else {
-                // Display error message
-                document.getElementById('errorMessage').style.display = 'block';
-            }
-        });
 
         // Check if the user clicked the login button 4 times
         document.getElementById('login-button').addEventListener('click', function() {
