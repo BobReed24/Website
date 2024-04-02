@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird</title>
+    <style>
+        canvas {
+            border: 2px solid black;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Flappy Bird button -->
-        <button id="flappy-bird-button" onclick="window.location.href = 'flappybird.html';">Flappy Bird</button>
-
-        <!-- Windows 96 button -->
-        <button id="windows96-button">Windows 96</button>
-
-        <div class="game-content">
-            <img class="bird" src="bird-img" alt="bird-img">
-            <div class="message">
-                Press Enter To Start Game
-            </div>
-        </div>
-    </div>
+    <canvas id="gameCanvas" width="288" height="512"></canvas>
     <script src="flappybird-script.js"></script>
 </body>
 
