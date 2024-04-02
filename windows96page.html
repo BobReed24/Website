@@ -5,7 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 96</title>
     <!-- Include your CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS to make the iframe full screen */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #windows96-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        #windows96-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* Style for the back to home button */
+        #back-to-home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div id="windows96-container">
