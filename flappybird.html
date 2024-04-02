@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird</title>
-    <style>
-        canvas {
-            border: 2px solid black;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <canvas id="gameCanvas" width="288" height="512"></canvas>
+    <div class="background"></div>
+    <img class="bird" src="logo.png" alt="bird-img">
+    <div class="message">
+        Press Enter To Start Game
+    </div>
+    <div class="score">
+        <span class="score_title"></span>
+        <span class="score_val"></span>
+    </div>
     <script src="flappybird-script.js"></script>
 </body>
 
