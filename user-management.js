@@ -5,7 +5,7 @@ async function sendUserDataToGitHub(userData) {
     const repo = 'users';
     const path = 'users.json';
 
-    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const apiUrl = `https://api.github.com/repos/bobreed24/users/contents/users.json`;
 
     try {
         const response = await fetch(apiUrl, {
