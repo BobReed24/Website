@@ -1,34 +1,80 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the count for the secret input
+    // Secret for accessing admin panel
+    const secret = '=<~!@$$;*]'; // 'boogabooga' in Malbolge code
+
+    // Counter for secret input
     let secretInputCount = 0;
 
-    // Malbolge-encoded secret: =[~!@$$;*]
-    const malbolgeSecret = `[~!@$$;*]`;
+    // Lockdown button
+    const lockdownButton = document.getElementById('lockdown-button');
+    // Unlock button
+    const unlockButton = document.getElementById('unlock-button');
 
-    // Function to check if the entered secret matches the Malbolge-encoded secret
-    function checkSecret(secret) {
-        return secret === malbolgeSecret;
+    // Function to handle lockdown
+    function lockdown() {
+        // Redirect only users on index.html and windows96page.html to lockdown.html
+        const currentPage = window.location.href;
+        if (currentPage.includes('index.html') || currentPage.includes('windows96page.html')) {
+            window.location.href = 'lockdown.html';
+        } else {
+            console.log('Lockdown does not apply on this page.');
+        }
     }
 
-    // Add event listener to the login button
-    document.getElementById('login-button').addEventListener('click', function() {
-        // Increment the count for each click
-        secretInputCount++;
+    // Function to handle unlocking
+    function unlock() {
+        // Redirect only users on index.html and windows96page.html to index-admin.html
+        const currentPage = window.location.href;
+        if (currentPage.includes('index.html') || currentPage.includes('windows96page.html')) {
+            window.location.href = 'index-admin.html';
+        } else {
+            console.log('Unlocking is not applicable on this page.');
+        }
+    }
 
-        // Check if the count reaches 4
-        if (secretInputCount === 4) {
-            // Prompt the user to enter the secret
-            const enteredSecret = prompt('Enter the secret (Malbolge-encoded):');
+    // Add event listener to lockdown button
+    if (lockdownButton) {
+        lockdownButton.addEventListener('click', lockdown);
+    } else {
+        console.error('Lockdown button not found');
+    }
 
-            // Check if the entered secret matches the Malbolge-encoded secret
-            if (checkSecret(enteredSecret)) {
-                // Redirect to the admin panel (index-admin.html)
+    // Add event listener to unlock button
+    if (unlockButton) {
+        unlockButton.addEventListener('click', unlock);
+    } else {
+        console.error('Unlock button not found');
+    }
+
+    // Display console logs
+    const consoleLogsContainer = document.getElementById('console-logs');
+
+    if (consoleLogsContainer) {
+        // Hook into console.log to display logs on the page
+        const oldLog = console.log;
+        console.log = function(message) {
+            oldLog.apply(console, arguments);
+            const logElement = document.createElement('div');
+            logElement.textContent = message;
+            consoleLogsContainer.appendChild(logElement);
+        };
+    } else {
+        console.error('Console logs container not found');
+    }
+
+    // Check for secret input
+    document.addEventListener('keydown', function(event) {
+        // Convert key code to character
+        const character = String.fromCharCode(event.keyCode);
+        // Increment secret input count if character matches secret
+        if (character === secret[secretInputCount]) {
+            secretInputCount++;
+            // If all characters of the secret are entered, redirect to index-admin.html
+            if (secretInputCount === secret.length) {
                 window.location.href = 'index-admin.html';
-            } else {
-                alert('Invalid secret. Access denied.');
             }
-
-            // Reset the count
+        } else {
+            // Reset input count if character does not match secret
             secretInputCount = 0;
         }
     });
