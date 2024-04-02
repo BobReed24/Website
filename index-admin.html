@@ -7,11 +7,33 @@
     <!-- Include your CSS -->
     <style>
         /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #lockdown-button, #unlock-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        #console-logs {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
     <!-- Lockdown button -->
     <button id="lockdown-button">Lockdown</button>
+
+    <!-- Unlock button -->
+    <button id="unlock-button">Unlock</button>
 
     <!-- Container for console logs -->
     <div id="console-logs">
