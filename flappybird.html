@@ -6,14 +6,19 @@
 </head>
 
 <body>
-    <div class="background"></div>
-    <img class="bird" src="logo.png" alt="bird-img">
-    <div class="message">
-        Press Enter To Start Game
-    </div>
-    <div class="score">
-        <span class="score_title"></span>
-        <span class="score_val"></span>
+    <div class="container">
+        <!-- Flappy Bird button -->
+        <button id="flappy-bird-button" onclick="window.location.href = 'flappybird.html';">Flappy Bird</button>
+
+        <!-- Windows 96 button -->
+        <button id="windows96-button">Windows 96</button>
+
+        <div class="game-content">
+            <img class="bird" src="bird-img" alt="bird-img">
+            <div class="message">
+                Press Enter To Start Game
+            </div>
+        </div>
     </div>
     <script src="flappybird-script.js"></script>
 </body>
