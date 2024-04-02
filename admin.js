@@ -1,34 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Lockdown button
-    const lockdownButton = document.getElementById('lockdown-button');
+    // Initialize the count for the secret input
+    let secretInputCount = 0;
 
-    if (lockdownButton) {
-        lockdownButton.addEventListener('click', function() {
-            // Redirect only users on index.html and windows96page.html to lockdown.html
-            const currentPage = window.location.href;
-            if (currentPage.includes('index.html') || currentPage.includes('windows96page.html')) {
-                window.location.href = 'lockdown.html';
+    // Malbolge-encoded secret: =[~!@$$;*]
+    const malbolgeSecret = `[~!@$$;*]`;
+
+    // Function to check if the entered secret matches the Malbolge-encoded secret
+    function checkSecret(secret) {
+        return secret === malbolgeSecret;
+    }
+
+    // Add event listener to the login button
+    document.getElementById('login-button').addEventListener('click', function() {
+        // Increment the count for each click
+        secretInputCount++;
+
+        // Check if the count reaches 4
+        if (secretInputCount === 4) {
+            // Prompt the user to enter the secret
+            const enteredSecret = prompt('Enter the secret (Malbolge-encoded):');
+
+            // Check if the entered secret matches the Malbolge-encoded secret
+            if (checkSecret(enteredSecret)) {
+                // Redirect to the admin panel (index-admin.html)
+                window.location.href = 'index-admin.html';
             } else {
-                console.log('Lockdown does not apply on this page.');
+                alert('Invalid secret. Access denied.');
             }
-        });
-    } else {
-        console.error('Lockdown button not found');
-    }
 
-    // Display console logs
-    const consoleLogsContainer = document.getElementById('console-logs');
-
-    if (consoleLogsContainer) {
-        // Hook into console.log to display logs on the page
-        const oldLog = console.log;
-        console.log = function(message) {
-            oldLog.apply(console, arguments);
-            const logElement = document.createElement('div');
-            logElement.textContent = message;
-            consoleLogsContainer.appendChild(logElement);
-        };
-    } else {
-        console.error('Console logs container not found');
-    }
+            // Reset the count
+            secretInputCount = 0;
+        }
+    });
 });
