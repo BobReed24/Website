@@ -1,6 +1,6 @@
 // Function to send user data to private repository on GitHub
 async function sendUserDataToGitHub(userData) {
-    const token = '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';
+    const token = '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';
     const owner = 'bobreed24';
     const repo = 'users';
     const path = 'users.json';
