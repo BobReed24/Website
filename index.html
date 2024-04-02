@@ -3,33 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows 96</title>
-    <!-- Include your CSS -->
+    <title>Home</title>
+    <!-- Include your CSS and other resources -->
     <style>
-        /* CSS to make the iframe full screen */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        #windows96-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        #windows96-iframe {
-            width: 100%;
-            height: 100%;
+        /* Additional CSS for the login and logout buttons */
+        #login-button,
+        #logout-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
             border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        /* Style for the back to home button */
-        #back-to-home-button {
+        #logout-button {
+            display: none;
+        }
+        #username-display {
+            font-weight: bold;
+        }
+        /* Additional CSS for the Windows 96 button */
+        #windows96-button {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #007bff;
-            color: #fff;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Additional CSS for the debug button */
+        #debug-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ff0000;
+            color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -38,17 +49,24 @@
     </style>
 </head>
 <body>
-    <div id="windows96-container">
-        <iframe id="windows96-iframe" src="https://windows96.net/"></iframe>
-        <!-- Button to go back to the homepage -->
-        <button id="back-to-home-button" onclick="goToHomepage()">Back to Homepage</button>
-    </div>
+    <!-- Login button -->
+    <button id="login-button" onclick="window.location.href = 'https://bobreed24.github.io/Website/login';">Login</button>
+    <!-- Logout button -->
+    <button id="logout-button">Logout</button>
 
-    <script>
-        // Function to redirect to the homepage
-        function goToHomepage() {
-            window.location.href = 'index.html';
-        }
-    </script>
+    <!-- Debug button -->
+    <button id="debug-button">Debug</button>
+
+    <!-- Windows 96 button -->
+    <button id="windows96-button">Windows 96</button>
+
+    <h1>Welcome to the Homepage</h1>
+    <!-- Display the username -->
+    <div id="username-display"></div>
+
+    <!-- Your homepage content here -->
+
+    <!-- Include your JavaScript file -->
+    <script src="index-script.js"></script>
 </body>
 </html>
