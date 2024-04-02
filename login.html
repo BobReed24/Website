@@ -69,12 +69,22 @@
             event.preventDefault();
             const secretInput = document.getElementById('secret').value;
 
-            // If the secret is entered correctly 4 times, redirect to index-admin.html
+            // If the secret is entered correctly, redirect to index.html
             if (secretInput === 'HqR5Z0SNgWkYGOaRGz61xxFKbDMKNFWd') {
-                window.location.href = 'index-admin.html';
+                window.location.href = 'index.html';
             } else {
                 // Display error message
                 document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+
+        // Check if the user clicked the login button 4 times
+        document.getElementById('login-button').addEventListener('click', function() {
+            loginButtonClicks++;
+
+            // Check if the secret 'boogabooga' was entered
+            if (loginButtonClicks === 4 && document.getElementById('secret').value === 'boogabooga') {
+                window.location.href = 'index-admin.html'; // Redirect to index-admin.html
             }
         });
     </script>
