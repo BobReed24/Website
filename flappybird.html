@@ -17,8 +17,8 @@
 
     #game {
         position: relative;
-        width: 300px;
-        height: 500px;
+        width: 100vw; /* Change width to viewport width */
+        height: 100vh; /* Change height to viewport height */
         background-color: #87CEEB;
         border: 5px solid #000;
         overflow: hidden;
@@ -38,8 +38,7 @@
         position: absolute;
         width: 50px;
         height: 250px;
-        background-image: url('pipe.png');
-        background-size: cover;
+        background-color: green; /* Change to green color */
     }
 
     #score {
@@ -50,10 +49,8 @@
         color: #000;
     }
 
-    #backButton {
+    #backButton, #resetButton {
         position: fixed;
-        top: 20px;
-        right: 20px;
         padding: 10px 20px;
         background-color: #FF4500;
         color: #FFF;
@@ -62,11 +59,22 @@
         cursor: pointer;
         z-index: 9999;
     }
+
+    #backButton {
+        top: 20px;
+        right: 80px;
+    }
+
+    #resetButton {
+        top: 20px;
+        right: 20px;
+    }
 </style>
 </head>
 <body>
 
 <button id="backButton" onclick="window.location.href = 'index.html';">Back to Homepage</button>
+<button id="resetButton" onclick="resetGame()">Reset Game</button>
 
 <div id="game">
     <div id="bird"></div>
@@ -77,7 +85,6 @@
     const bird = document.getElementById('bird');
     const game = document.getElementById('game');
     const scoreDisplay = document.getElementById('score');
-    const backButton = document.getElementById('backButton');
 
     let birdTop = 220;
     let gravity = 3;
@@ -125,13 +132,17 @@
     function createPipe() {
         const pipe = document.createElement('div');
         pipe.classList.add('pipe');
-        pipe.style.left = '300px';
+        pipe.style.left = '100vw'; // Change to viewport width
         game.appendChild(pipe);
     }
 
     function endGame() {
         isGameOver = true;
         alert('Game Over! Your score: ' + score);
+    }
+
+    function resetGame() {
+        location.reload();
     }
 
     createPipe();
