@@ -5,7 +5,7 @@ async function authenticateUser(username, password) {
         const response = await fetch('https://api.github.com/repos/bobreed24/users/contents/users.json', {
             method: 'GET',
             headers: {
-                'Authorization': 'token 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', // Replace with your GitHub PAT
+                'Authorization': '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', // Replace with your GitHub PAT
                 'Accept': 'application/vnd.github.v3+json'
             }
         });
