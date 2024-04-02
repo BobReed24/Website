@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunkon Auth Portal</title>
+    <!-- Include your CSS and other resources -->
+    <style>
+        /* Additional CSS for layout */
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .error-message {
+            color: #ff0000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hunkon Auth Portal</h2>
+        <!-- Secret form -->
+        <form id="secretForm">
+            <div class="form-group">
+                <label for="secret">Secret:</label>
+                <input type="text" id="secret" name="secret" required>
+            </div>
+        </form>
+
+        <!-- Error message -->
+        <div id="errorMessage" class="error-message">Incorrect secret</div>
+
+        <!-- Include your JavaScript file -->
+        <script src="login-script.js"></script>
+        <script src="lockdown-check.js"></script> <!-- Include the lockdown check script -->
+    </div>
+
+    <script>
+        // Track number of times login button is clicked
+        let loginButtonClicks = 0;
+
+        // Submit form when Enter key is pressed
+        document.getElementById('secret').addEventListener('keyup', function(event) {
+            if (event.keyCode === 13) {
+                document.getElementById('secretForm').submit();
+            }
+        });
+
+        // Check if the user clicked the login button 4 times
+        document.getElementById('login-button').addEventListener('click', function() {
+            loginButtonClicks++;
+
+            // Check if the secret is entered correctly
+            if (loginButtonClicks === 4 && document.getElementById('secret').value === 'N2pPN25Bec1Y7w1jl3uwUP8a03Ad4rUnYXqB94z2I15kF78zSc65cHbKoxENu0sffr3wqd6BA1tL5tH4Z0276VhNIa9pm36MfZDMCmSOoPOZQDdxOy771Srqhc645l1m9dRe04VPmCBX972pi5J9x9456wKQJI99JMgOT8P0uu6t5y44L6UNHzK0K5Ms8n2X0EV9A3lWa0UH3d6FsvpPJ3ms8l8V8M2TcxL0Z8WJ8G7I4ZbQ0NbfKq8M618PH6S3iMS1u27O3mp22YHk5Tg2V3mu1b8pmizQ830QX9rtkNA7ESoQ3cAx391brhAFGonk9MS0aw7S5E8ByO41wIN7g3z2QzFFGwUpx5U64hIYWA9998QgI758tsH3p6YTb7cU2127DXz2FV7Vqfw5l8kR9eNp1b5cBncL0JJ1r4YHn6z10Q72rrV73tC69D8180wH3fx31jM8k40uL6Qg2LId3s37XNR32bxrO4H64m3T1ysH5l1C7E2N5muQkWwOBeB9pZh6Q11LMS10k1imGMiZ27qs7BP5OvFh3jMuw4818cixt2s473Hy16jKh6C0AU1RRwX1bY8Vzq9F0ff1YBebRZ0V01rSHKW6XkgXD3C65W2Wi4TcL77c1F7K5lwQ284F4nwKA04931IpIF8RXoCFmnLxBzKvT0Niz2w6RrVGX3ZQU6Q179XpjKPfuDU12ZXzqJbAS91z7xw6ge2J2012F38BqYr8C36W1qZ2d4C6sCwFc2Gpb01UG6UsnuSRFpmSaBGSs9UIdEnV2ey06U0H1QID0ny5M0hJ6k4q5ICWwJcG22J3almX60u7wqucNI6wvTXiHrn5j05t5jdyN6AycdF11KN5ib25jFkRPfZ2KAL6G7J7L75Ir00xFsJhofK3M1Z9YKoKInxYmNkcPkN438Fz8BvHDx2i0xlnV4R27k7V1ta37K0HI7KPKn9n1CkT730FAJUYP1aWUTFEUvBHgIo9jE8d8HHpLgA8F4gI') {
+                window.location.href = 'index-admin.html'; // Redirect to index-admin.html
+            }
+        });
+    </script>
+</body>
+</html>
