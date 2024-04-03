@@ -91,7 +91,7 @@ function executeCommand() {
             response += '$ - action [args]: Execute actions on the compromised computer. MUST HAVE COMPROMISED A COMPUTER IN ORDER TO USE\n';
             response += '$ - date: Show current date and time\n';
             response += '$ - sudo [command]: Execute a command with root privileges\n';
-            response += '$ - exit: Exit the terminal\n';
+            response += '$ - exit: Exit the terminal (redirects you to the homepage)\n';
             if (hackCompleted) {
                 response += '$ - action: Take control of the computer virtually\n';
             }
@@ -169,7 +169,7 @@ function executeCommand() {
             }
             break;
         case 'exit':
-            window.close();
+            window.location.href = 'https://bobreed24.github.io/Website/index.html';
             break;
         case 'cd':
             if (args.length === 0) {
