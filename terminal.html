@@ -96,16 +96,18 @@ function executeCommand() {
                 response += '$ - action: Take control of the computer virtually\n';
             }
             break;
-        case 'clear':
-            const outputLines = document.querySelectorAll('.output-line');
-            const lastOutputLine = outputLines[outputLines.length - 1];
-            if (lastOutputLine && lastOutputLine.previousSibling && lastOutputLine.previousSibling.classList.contains('input-line')) {
-                // Clear only the output lines below the command input box
-                while (outputContainer.lastChild !== lastOutputLine) {
-                    outputContainer.removeChild(outputContainer.lastChild);
-                }
-            }
-            break;
+            case 'clear':
+    const outputLines = document.querySelectorAll('.output-line');
+    const commandInput = document.querySelector('.input-line');
+    const welcomeMessage = document.querySelector('.output-line:nth-child(1)');
+    const helpMessage = document.querySelector('.output-line:nth-child(2)');
+    
+    outputLines.forEach(line => {
+        if (line !== commandInput && line !== welcomeMessage && line !== helpMessage) {
+            outputContainer.removeChild(line);
+        }
+    });
+    break;
         case 'echo':
             if (args.length === 0) {
                 response = '$ Usage: echo [message]\n';
@@ -142,12 +144,16 @@ function executeCommand() {
                                     displayOutputLine('$ Deploying malware payload...', outputContainer);
                                     setTimeout(() => {
                                         displayOutputLine('$ Hacking into target...', outputContainer);
-                                        hackCompleted = true;
-                                        response += '$ Hack successful. Target compromised.\n';
-                                        const outputLines = response.split('\n');
-                                        displayOutputLinesSequentially(outputLines.slice(0, -1), outputContainer); // Display all except the last line
-                                        displayOutputLine('$ Hack successful. Target compromised.\n', outputContainer); // Display the last line
-                                    }, getRandomInterval()); // Random delay for hacking into target
+                                        setTimeout(() => {
+                                            hackCompleted = true;
+                                            response += '$ Hack successful. Target compromised.\n';
+                                            const outputLines = response.split('\n');
+                                            displayOutputLinesSequentially(outputLines.slice(0, -1), outputContainer); // Display all except the last line
+                                            setTimeout(() => {
+                                                displayOutputLine('$ Hack successful. Target compromised.\n', outputContainer); // Display the last line after 4 seconds
+                                            }, 4000);
+                                        }, getRandomInterval()); // Random delay for hacking into target
+                                    }, getRandomInterval());
                                 }, getRandomInterval());
                             }, getRandomInterval());
                         }, getRandomInterval());
@@ -213,14 +219,9 @@ function executeCommand() {
                             }, 50);
                             break;
                         case 'viewstats':
-                            response += '$ Gathering statistics, please wait...\n'; // Delay message
-                            setTimeout(() => {
-                                response += '$ - RAM: 16GB\n';
-                                response += '$ - CPU: Intel Core i7\n';
-                                response += '$ - OS: Windows 10\n';
-                                const outputLines = response.split('\n');
-                                displayOutputLinesSequentially(outputLines, outputContainer);
-                            }, 2000); // Delay for 2 seconds before displaying statistics
+                            response += '$ - RAM: 16GB\n';
+                            response += '$ - CPU: Intel Core i7\n';
+                            response += '$ - OS: Windows 10\n';
                             break;
                         default:
                             response = '$ Subcommand not found: ' + subcommand + '\n';
@@ -276,21 +277,36 @@ function displayOutputLine(line, container) {
 }
 
 function simulateDiskWipe(container) {
+    const totalDuration = 15000; // Total duration for the disk wipe process (in milliseconds)
+    const deletionInterval = 5; // Interval between each deletion (in milliseconds)
     const outputLines = [];
-    for (let i = 0; i < 100; i++) {
+    const totalDeletions = Math.ceil(totalDuration / deletionInterval);
+    
+    for (let i = 0; i < totalDeletions; i++) {
         outputLines.push('$ Deleting file ' + generateRandomFilePath() + '...');
     }
+    
+    let index = 0;
     const interval = setInterval(() => {
-        if (outputLines.length > 0) {
+        if (index < outputLines.length) {
             const outputLine = document.createElement('div');
             outputLine.classList.add('output-line');
-            outputLine.textContent = outputLines.shift();
+            outputLine.textContent = outputLines[index];
             container.appendChild(outputLine);
             container.scrollTop = container.scrollHeight; // Scroll to bottom
+            index++;
         } else {
             clearInterval(interval);
+            const finalLine = document.createElement('div');
+            finalLine.classList.add('output-line');
+            finalLine.textContent = '$ Disk wipe completed.\n';
+            container.appendChild(finalLine);
+            container.scrollTop = container.scrollHeight; // Scroll to bottom
+            const audio = document.getElementById('audio');
+            audio.pause(); // Pause the audio
         }
-    }, 50);
+    }, deletionInterval);
+    
     setTimeout(() => {
         clearInterval(interval);
         const finalLine = document.createElement('div');
@@ -298,7 +314,10 @@ function simulateDiskWipe(container) {
         finalLine.textContent = '$ Disk wipe completed.\n';
         container.appendChild(finalLine);
         container.scrollTop = container.scrollHeight; // Scroll to bottom
-    }, 15000);
+        const audio = document.getElementById('audio');
+        audio.pause(); // Pause the audio
+    }, totalDuration);
+    
     const audio = document.getElementById('audio');
     audio.play();
 }
@@ -327,7 +346,7 @@ function generateRandomFilePath() {
 // Password prompt handling
 window.onload = function() {
     const password = prompt("Enter the password to access the terminal:");
-    if (password === 'fart420') { // Updated password
+    if (password === 'fart420') {
         document.getElementById('terminal-container').style.display = 'block'; // Show the terminal
     } else {
         alert('Incorrect password. Terminal access denied.');
