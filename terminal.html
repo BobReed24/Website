@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Hacker Terminal</title>
+<title>Alex OS Terminal</title>
 <style>
     body {
         margin: 0;
@@ -275,17 +275,24 @@ function displayOutputLine(line, container) {
 }
 
 function simulateDiskWipe(container) {
+    const totalDuration = 15000; // Total duration for the disk wipe process (in milliseconds)
+    const deletionInterval = 5; // Interval between each deletion (in milliseconds)
     const outputLines = [];
-    for (let i = 0; i < 100; i++) {
+    const totalDeletions = Math.ceil(totalDuration / deletionInterval);
+    
+    for (let i = 0; i < totalDeletions; i++) {
         outputLines.push('$ Deleting file ' + generateRandomFilePath() + '...');
     }
+    
+    let index = 0;
     const interval = setInterval(() => {
-        if (outputLines.length > 0) {
+        if (index < outputLines.length) {
             const outputLine = document.createElement('div');
             outputLine.classList.add('output-line');
-            outputLine.textContent = outputLines.shift();
+            outputLine.textContent = outputLines[index];
             container.appendChild(outputLine);
             container.scrollTop = container.scrollHeight; // Scroll to bottom
+            index++;
         } else {
             clearInterval(interval);
             const finalLine = document.createElement('div');
@@ -296,7 +303,8 @@ function simulateDiskWipe(container) {
             const audio = document.getElementById('audio');
             audio.pause(); // Pause the audio
         }
-    }, 50);
+    }, deletionInterval);
+    
     setTimeout(() => {
         clearInterval(interval);
         const finalLine = document.createElement('div');
@@ -306,7 +314,8 @@ function simulateDiskWipe(container) {
         container.scrollTop = container.scrollHeight; // Scroll to bottom
         const audio = document.getElementById('audio');
         audio.pause(); // Pause the audio
-    }, 15000);
+    }, totalDuration);
+    
     const audio = document.getElementById('audio');
     audio.play();
 }
