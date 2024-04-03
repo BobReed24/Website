@@ -97,15 +97,18 @@ function executeCommand() {
             }
             break;
         case 'clear':
-            const outputLines = document.querySelectorAll('.output-line');
-            const lastOutputLine = outputLines[outputLines.length - 1];
-            if (lastOutputLine && lastOutputLine.previousSibling && lastOutputLine.previousSibling.classList.contains('input-line')) {
-                // Clear only the output lines below the command input box
-                while (outputContainer.lastChild !== lastOutputLine) {
-                    outputContainer.removeChild(outputContainer.lastChild);
-                }
-            }
-            break;
+    const outputLines = document.querySelectorAll('.output-line');
+    const commandInput = document.querySelector('.input-line');
+    const welcomeMessage = outputLines[0];
+    const helpMessage = outputLines[1];
+    
+    for (let i = outputLines.length - 1; i >= 0; i--) {
+        const line = outputLines[i];
+        if (line !== commandInput && line !== welcomeMessage && line !== helpMessage) {
+            outputContainer.removeChild(line);
+        }
+    }
+    break;
         case 'echo':
             if (args.length === 0) {
                 response = '$ Usage: echo [message]\n';
