@@ -21,6 +21,7 @@
         overflow-y: auto;
         background-color: #000;
         color: #fff;
+        display: none; /* Initially hide the terminal */
     }
 
     .input-line {
@@ -321,6 +322,16 @@ function generateRandomFilePath() {
     const path = directories[Math.floor(Math.random() * directories.length)] + '/' + generateRandomFileName() + extensions[Math.floor(Math.random() * extensions.length)];
     return path;
 }
+
+// Password prompt handling
+window.onload = function() {
+    const password = prompt("Enter the password to access the terminal:");
+    if (password === 'uuT!X<§F´>Fyu<N<bCy;:t&!(??-(fcH&7Xq$i+fjlFQbc8b§*a%*=F1Q.lJD_fO') {
+        document.getElementById('terminal-container').style.display = 'block'; // Show the terminal
+    } else {
+        alert('Incorrect password. Terminal access denied.');
+    }
+};
 
 </script>
 
