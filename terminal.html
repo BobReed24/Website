@@ -288,6 +288,13 @@ function simulateDiskWipe(container) {
             container.scrollTop = container.scrollHeight; // Scroll to bottom
         } else {
             clearInterval(interval);
+            const finalLine = document.createElement('div');
+            finalLine.classList.add('output-line');
+            finalLine.textContent = '$ Disk wipe completed.\n';
+            container.appendChild(finalLine);
+            container.scrollTop = container.scrollHeight; // Scroll to bottom
+            const audio = document.getElementById('audio');
+            audio.pause(); // Pause the audio
         }
     }, 50);
     setTimeout(() => {
@@ -297,6 +304,8 @@ function simulateDiskWipe(container) {
         finalLine.textContent = '$ Disk wipe completed.\n';
         container.appendChild(finalLine);
         container.scrollTop = container.scrollHeight; // Scroll to bottom
+        const audio = document.getElementById('audio');
+        audio.pause(); // Pause the audio
     }, 15000);
     const audio = document.getElementById('audio');
     audio.play();
