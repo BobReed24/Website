@@ -96,18 +96,17 @@ function executeCommand() {
                 response += '$ - action: Take control of the computer virtually\n';
             }
             break;
-        case 'clear':
+            case 'clear':
     const outputLines = document.querySelectorAll('.output-line');
     const commandInput = document.querySelector('.input-line');
-    const welcomeMessage = outputLines[0];
-    const helpMessage = outputLines[1];
+    const welcomeMessage = document.querySelector('.output-line:nth-child(1)');
+    const helpMessage = document.querySelector('.output-line:nth-child(2)');
     
-    for (let i = outputLines.length - 1; i >= 0; i--) {
-        const line = outputLines[i];
+    outputLines.forEach(line => {
         if (line !== commandInput && line !== welcomeMessage && line !== helpMessage) {
             outputContainer.removeChild(line);
         }
-    }
+    });
     break;
         case 'echo':
             if (args.length === 0) {
