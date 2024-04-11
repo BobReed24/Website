@@ -81,6 +81,13 @@
         .console button:hover {
             background-color: #45a049;
         }
+
+        /* Iframe styles */
+        iframe {
+            width: 100%;
+            height: calc(100vh - 160px); /* Adjust based on header and footer heights */
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -90,8 +97,8 @@
     </header>
 
     <!-- Content Section -->
-    <div class="content" id="gimkit-content">
-        <!-- Gimkit content will be loaded here -->
+    <div class="content">
+        <iframe id="gimkit-iframe"></iframe>
     </div>
 
     <!-- Developer Console -->
@@ -111,19 +118,15 @@
         document.getElementById('run-code-btn').addEventListener('click', function() {
             var code = document.getElementById('console-input').value;
             try {
-                eval(code);
+                var iframe = document.getElementById('gimkit-iframe');
+                iframe.contentWindow.eval(code);
             } catch (error) {
                 console.error(error);
             }
         });
 
-        // Fetch Gimkit content
-        fetch('https://cors-anywhere.herokuapp.com/https://www.gimkit.com/')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('gimkit-content').innerHTML = html;
-            })
-            .catch(error => console.error('Error fetching Gimkit content:', error));
+        // Set Gimkit iframe source
+        document.getElementById('gimkit-iframe').src = 'https://www.gimkit.com/';
     </script>
 </body>
 </html>
