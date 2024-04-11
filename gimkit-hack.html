@@ -15,6 +15,9 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
         /* Header styles */
@@ -87,8 +90,8 @@
     </header>
 
     <!-- Content Section -->
-    <div class="content">
-        <iframe src="https://www.gimkit.com/me" style="width:100%; height:100vh; border:none;"></iframe>
+    <div class="content" id="gimkit-content">
+        <!-- Gimkit content will be loaded here -->
     </div>
 
     <!-- Developer Console -->
@@ -113,6 +116,14 @@
                 console.error(error);
             }
         });
+
+        // Fetch Gimkit content
+        fetch('https://cors-anywhere.herokuapp.com/https://www.gimkit.com/')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('gimkit-content').innerHTML = html;
+            })
+            .catch(error => console.error('Error fetching Gimkit content:', error));
     </script>
 </body>
 </html>
