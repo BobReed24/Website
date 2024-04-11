@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website - Gimkit Emulation</title>
+    <style>
+        /* CSS styles go here */
+        /* Emulate Gimkit's styles */
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="navbar">
+            <div class="brand">Your Website</div>
+            <div class="menu">
+                <button class="dropdown-btn">Developer Console &#9660;</button>
+                <div class="dropdown-content">
+                    <textarea id="console-input" placeholder="Enter JavaScript code here..."></textarea>
+                    <button id="run-code-btn">Run</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="content">
+        <!-- Your content here -->
+    </div>
+
+    <script>
+        // JavaScript code goes here
+        // Add event listeners and functionality for the developer console
+        document.getElementById('run-code-btn').addEventListener('click', function() {
+            var code = document.getElementById('console-input').value;
+            try {
+                eval(code);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>
