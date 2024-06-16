@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alex@shadow - 192.168.1.113:49102</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .stat-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stat-title {
+            font-size: 18px;
+            color: #333;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="stat-card">
+            <div class="stat-title">Running Cores:</div>
+            <div class="stat-value" id="stat1">3200 Cores</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Memory:</div>
+            <div class="stat-value" id="stat2">25,600 GB (25.6 TB)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Total Storage:</div>
+            <div class="stat-value" id="stat3">70,000,000 GB (70 PB)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Running CPUs:</div>
+            <div class="stat-value" id="stat4">50</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Running Storage Drives:</div>
+            <div class="stat-value" id="stat5">2048</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Any outages?</div>
+            <div class="stat-value" id="stat6">No</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Running?</div>
+            <div class="stat-value" id="stat7">Yes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Online?</div>
+            <div class="stat-value" id="stat8">Yes</div>
+        </div>
+    </div>
+    <script>
+        // Customizing the stats values here
+        document.getElementById('stat1').innerText = '3200 Cores';
+        document.getElementById('stat2').innerText = '25,600 GB (25.6 TB)';
+        document.getElementById('stat3').innerText = '70,000,000 GB (70 PB)';
+        document.getElementById('stat4').innerText = '50';
+        document.getElementById('stat5').innerText = '2048';
+        document.getElementById('stat6').innerText = 'No';
+        document.getElementById('stat7').innerText = 'Yes';
+        document.getElementById('stat8').innerText = 'Yes';
+    </script>
+</body>
+</html>
