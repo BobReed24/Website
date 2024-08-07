@@ -1,0 +1,10 @@
+{
+    "name": "Python Flask",
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:3.9",
+    "postCreateCommand": "pip install -r requirements.txt",
+    "forwardPorts": [5000],
+    "remoteUser": "vscode",
+    "features": {
+        "git": "latest"
+    }
+}
