@@ -3,45 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect and Click</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="2; url=https://refactored-robot-x5p7qq47jvq3vr7q-8000.app.github.dev/home">
 </head>
 <body>
-    <iframe id="targetFrame" src="https://refactored-robot-x5p7qq47jvq3vr7q-8000.app.github.dev/signup" style="width:0;height:0;border:0; border:none;"></iframe>
-
-    <script>
-        // Function to set a cookie
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        // Function to click the button inside the iframe
-        function clickButtonInIframe() {
-            var iframe = document.getElementById('targetFrame');
-            var iframeWindow = iframe.contentWindow;
-
-            // Wait until the iframe is loaded
-            iframe.onload = function() {
-                setCookie('tunnel_phishing_protection', 'sneaky-horse-trs946m.usw3', 365);
-                setTimeout(function() {
-                    var button = iframeWindow.document.querySelector('.btn-primary.btn.js-toggle-hidden');
-                    if (button) {
-                        button.click();
-                    } else {
-                        console.error('Button not found');
-                    }
-                }, 3000); // Adjust the delay as needed
-            };
-        }
-
-        // Call the function to click the button after the iframe loads
-        clickButtonInIframe();
-    </script>
+    <p>If you are not redirected automatically, follow this <a href="https://refactored-robot-x5p7qq47jvq3vr7q-8000.app.github.dev/home">link</a>.</p>
 </body>
 </html>
