@@ -1,0 +1,4 @@
+Username: asdf
+Password: asdf
+Email: asdf@x.y
+Premium: False

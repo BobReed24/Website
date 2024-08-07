@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>View Users</title>
+</head>
+<body>
+    <h1>View Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Email</th> <!-- Added Email column -->
+                <th>Premium Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.email }}</td> <!-- Display Email -->
+                <td>
+                    <form method="POST" action="{{ url_for('update_premium_status', username=user.username) }}">
+                        {{ form.csrf_token }}
+                        <input type="checkbox" name="premium" {% if user.premium_status == 'True' %}checked{% endif %} />
+                        <button type="submit">Update Premium Status</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="{{ url_for('delete_user', username=user.username) }}" style="display:inline;">
+                        {{ form.csrf_token }}
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('admin_panel') }}">Back to Admin Panel</a>
+</body>
+</html>

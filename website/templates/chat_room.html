@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f4f4f4;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .message p {
+            margin: 0;
+        }
+        .message .username {
+            font-weight: bold;
+        }
+        .message .text {
+            margin-left: 10px;
+        }
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .chat-input button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background-color: #0056b3;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+        .light-mode {
+            background-color: #fff;
+            color: black;
+        }
+        .toggle-mode {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body class="{{ mode }}">
+    <div class="header">
+        <h1>Chat Room</h1>
+        <a href="{{ url_for('home') }}" class="chat-room-button">Back to Home</a>
+    </div>
+    <div class="chat-container" id="chat-container">
+        {% for message in messages %}
+        <div class="message">
+            <p class="username">{{ message.username }}:</p>
+            <p class="text">{{ message.text }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Type your message here...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <div class="toggle-mode">
+        <button onclick="toggleMode()">Toggle Dark/Light Mode</button>
+    </div>
+    <script>
+        function sendMessage() {
+            var input = document.getElementById('message-input');
+            var message = input.value;
+            if (message) {
+                fetch('/send-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ text: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        input.value = '';
+                        // Reload the chat room or update messages here
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+
+        function toggleMode() {
+            var body = document.body;
+            var currentMode = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            var newMode = currentMode === 'dark' ? 'light' : 'dark';
+            fetch('/set-mode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ mode: newMode })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    body.classList.toggle('dark-mode', newMode === 'dark');
+                    body.classList.toggle('light-mode', newMode === 'light');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

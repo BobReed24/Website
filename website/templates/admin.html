@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <style>
+        .button {
+            background-color: blue; /* Blue background */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <ul>
+        <li><a href="/admin/view_users"><button class="button">View Users</button></a></li>
+        <li><a href="/admin/editor"><button class="button">Code Editor</button></a></li>
+        <li><form action="/admin/lock" method="post"><button class="button">Lock Site</button></form></li>
+        <li><form action="/admin/unlock" method="post"><button class="button">Unlock Site</button></form></li>
+        <li><a href="/logout"><button class="button">Logout</button></a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Username: alex
+Password: cube1234
+Email: alex@ayxia.com
+Premium: True

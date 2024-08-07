@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 10px;
+        }
+        .file-list a {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .file-list h2 {
+            margin-bottom: 10px;
+        }
+        .top-right-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .image-viewer {
+            width: 100vw;
+            height: 100vh;
+            background-size: 100vw 100vh;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .disabled {
+            color: grey;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('admin_panel') }}" class="top-right-button">
+            <button type="button">Back to Admin Panel</button>
+        </a>
+        <h1>Code Editor</h1>
+        
+        <!-- Upload File Form -->
+        <form method="POST" enctype="multipart/form-data">
+            <label for="upload">Upload file:</label>
+            <input type="file" name="upload" id="upload">
+            <button type="submit">Upload</button>
+        </form>
+        
+        <!-- Create Directory Form -->
+        <form method="POST">
+            <label for="new_directory">Create Directory:</label>
+            <input type="text" name="new_directory" id="new_directory" placeholder="Directory name" required>
+            <button type="submit">Create</button>
+        </form>
+        
+        <!-- Edit File Form -->
+        <form method="POST">
+            <label for="file">Select File:</label>
+            <select name="file" id="file" required onchange="loadFile()">
+                {% for file in files %}
+                {% if file != 'app.py' %}
+                <option value="{{ file }}" {% if file == selected_file_name %}selected{% endif %}>{{ file }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <label for="code">Code:</label>
+            <textarea name="code" id="code">{{ selected_file_content }}</textarea>
+            <button type="submit">Save</button>
+        </form>
+        
+        <!-- Delete File Form -->
+        <form method="POST">
+            <label for="delete_file">Delete File:</label>
+            <select name="filename" id="delete_file" required>
+                {% for file in files %}
+                {% if file != 'app.py' %}
+                <option value="{{ file }}">{{ file }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <button type="submit" name="action" value="delete">Delete</button>
+        </form>
+        
+        <!-- File List -->
+        <div class="file-list">
+            <h2>Available Files and Directories</h2>
+            {% for file in files %}
+            {% if file != 'app.py' %}
+            <a href="{{ url_for('serve_file', filename=file) }}" target="_blank">
+                {{ file }}
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        function loadFile() {
+            const fileSelect = document.getElementById('file');
+            const selectedFile = fileSelect.value;
+            if (selectedFile) {
+                window.location.href = `?file=${encodeURIComponent(selectedFile)}`;
+            }
+        }
+    </script>
+</body>
+</html>

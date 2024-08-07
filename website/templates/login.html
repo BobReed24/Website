@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        label {
+            font-size: 1.2em; /* Adjust the size as needed */
+        }
+        .error {
+            color: red;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Login</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/login" method="post" autocomplete="off">
+            <div class="grid">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" autocomplete="off" required>
+            </div>
+            <div class="grid">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" autocomplete="off" required>
+            </div>
+
+            <!-- Security code input -->
+            {% if locked and not premium %}
+            <div class="grid">
+                <label for="security_code">Security Code (Premium users just put anything):</label>
+                <input type="text" id="security_code" name="security_code" autocomplete="off" required>
+            </div>
+            {% endif %}
+
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Forgot Password Button -->
+        <p><a href="{{ url_for('request_password_reset') }}"><button type="button" role="button">Forgot Password</button></a></p>
+
+        <!-- Sign Up Button -->
+        <p>Don't have an account?</p>
+        <a href="/signup"><button type="button" role="button">Sign Up</button></a>
+    </main>
+</body>
+
+</html>
