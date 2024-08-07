@@ -19,23 +19,27 @@
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
 
+        // Function to click the button after the redirect
+        function clickButtonAfterRedirect() {
+            // Wait for the target page to load
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    setCookie('tunnel_phishing_protection', 'sneaky-horse-trs946m.usw3', 365);
+                    var button = document.querySelector('.btn-primary.btn.js-toggle-hidden');
+                    if (button) {
+                        button.click();
+                    } else {
+                        console.error('Button not found');
+                    }
+                }, 3000); // Adjust the delay as needed
+            });
+        }
+
         // Redirect to the target URL
         window.location.href = "https://refactored-robot-x5p7qq47jvq3vr7q-8000.app.github.dev/signup";
 
-        // Function to click the button
-        function clickButton() {
-            setCookie('tunnel_phishing_protection', 'sneaky-horse-trs946m.usw3', 365);
-            // Assuming the button is in the target page and can be selected
-            var button = document.querySelector('.btn-primary.btn.js-toggle-hidden');
-            if (button) {
-                button.click();
-            } else {
-                console.error('Button not found');
-            }
-        }
-
-        // Delay to ensure the page is fully loaded before clicking the button
-        setTimeout(clickButton, 5000); // Adjust the delay as needed
+        // Call the function to click the button after redirect
+        clickButtonAfterRedirect();
     </script>
 </body>
 </html>
