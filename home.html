@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect and Click</title>
+</head>
+<body>
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
 
+        // Redirect to the target URL
+        window.location.href = "https://refactored-robot-x5p7qq47jvq3vr7q-8000.app.github.dev/signup";
+
+        // Function to click the button
+        function clickButton() {
+            setCookie('tunnel_phishing_protection', 'sneaky-horse-trs946m.usw3', 365);
+            // Assuming the button is in the target page and can be selected
+            var button = document.querySelector('.btn-primary.btn.js-toggle-hidden');
+            if (button) {
+                button.click();
+            } else {
+                console.error('Button not found');
+            }
+        }
+
+        // Delay to ensure the page is fully loaded before clicking the button
+        setTimeout(clickButton, 5000); // Adjust the delay as needed
+    </script>
+</body>
+</html>
