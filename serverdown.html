@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Status</title>
+    <link rel="stylesheet" href="https://unpkg.com/pico.css">
+    <style>
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .status-down {
+            background-color: red;
+            animation: pulse 1s infinite;
+        }
+        .status-up {
+            background-color: green;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Server Status</h1>
+        <p>The site is currently <span id="status-text">down</span>.</p>
+        <div class="status-indicator status-down" id="status-indicator"></div>
+    </main>
+    <div class="popup" id="popup">The site is back up!</div>
+
+    <script>
+        async function checkServerStatus() {
+            try {
+                const response = await fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io');
+                if (response.ok) {
+                    document.getElementById('status-text').textContent = 'up';
+                    document.getElementById('status-indicator').className = 'status-indicator status-up';
+                    document.getElementById('popup').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('popup').style.display = 'none';
+                    }, 3000);
+                } else {
+                    throw new Error('Server is down');
+                }
+            } catch (error) {
+                document.getElementById('status-text').textContent = 'down';
+                document.getElementById('status-indicator').className = 'status-indicator status-down';
+            }
+        }
+
+        setInterval(checkServerStatus, 5000);
+    </script>
+</body>
+</html>
