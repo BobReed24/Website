@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <script>
+        function checkConnection() {
+            fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    window.location.href = 'https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home';
+                })
+                .catch(error => {
+                    window.location.href = 'https://bobreed24.github.io/serverdown.html';
+                });
+        }
+    </script>
+</head>
+<body onload="checkConnection()">
+    <h1>Loading...</h1>
+    <p>If you are not redirected, please click <a href="https://bobreed24.github.io/serverdown.html">here</a>.</p>
+</body>
+</html>
