@@ -2,71 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server Status</title>
-    <link rel="stylesheet" href="https://unpkg.com/pico.css">
+    <title>Site Status - Server Down</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.4.3/css/pico.min.css">
     <style>
-        .status-indicator {
+        #statusIndicator {
             width: 20px;
             height: 20px;
             border-radius: 50%;
             display: inline-block;
-            margin-right: 10px;
+            animation: pulse 1.5s infinite;
         }
-        .status-down {
-            background-color: red;
-            animation: pulse 1s infinite;
-        }
-        .status-up {
-            background-color: green;
-            animation: pulse 1s infinite;
-        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
-        .popup {
+
+        #popupNotification {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #333;
-            color: white;
-            padding: 10px;
+            background: var(--color-primary);
+            color: var(--color-background);
+            padding: 10px 20px;
             border-radius: 5px;
             display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
     <main class="container">
-        <h1>Server Status</h1>
-        <p>The site is currently <span id="status-text">down</span>.</p>
-        <div class="status-indicator status-down" id="status-indicator"></div>
+        <h1>Site Status</h1>
+        <p>The site is currently down. We are working to get it back online as soon as possible.</p>
+        <div id="statusIndicator" style="background-color: red;"></div>
+        <p>Status: <span id="statusText">Down</span></p>
     </main>
-    <div class="popup" id="popup">The site is back up!</div>
+    <div id="popupNotification">The site is back online!</div>
 
     <script>
-        async function checkServerStatus() {
+        const checkServer = async () => {
             try {
-                const response = await fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io');
-                if (response.ok) {
-                    document.getElementById('status-text').textContent = 'up';
-                    document.getElementById('status-indicator').className = 'status-indicator status-up';
-                    document.getElementById('popup').style.display = 'block';
-                    setTimeout(() => {
-                        document.getElementById('popup').style.display = 'none';
-                    }, 3000);
-                } else {
-                    throw new Error('Server is down');
-                }
-            } catch (error) {
-                document.getElementById('status-text').textContent = 'down';
-                document.getElementById('status-indicator').className = 'status-indicator status-down';
+                const response = await fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/', { method: 'HEAD' });
+                return response.ok;
+            } catch {
+                return false;
             }
-        }
+        };
 
-        setInterval(checkServerStatus, 5000);
+        const updateStatus = async () => {
+            const isServerUp = await checkServer();
+            const statusIndicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+            const popupNotification = document.getElementById('popupNotification');
+
+            if (isServerUp) {
+                statusIndicator.style.backgroundColor = 'green';
+                statusText.textContent = 'Up';
+                popupNotification.style.display = 'block';
+            } else {
+                statusIndicator.style.backgroundColor = 'red';
+                statusText.textContent = 'Down';
+                popupNotification.style.display = 'none';
+            }
+        };
+
+        // Check the server status every 10 seconds
+        setInterval(updateStatus, 10000);
+        updateStatus(); // Initial check
     </script>
 </body>
 </html>
