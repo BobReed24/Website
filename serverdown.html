@@ -206,16 +206,6 @@
             hasAlerted = true; // Ensure the alert only happens once
           }
         }
-
-        // Show notification to check the page every 10 seconds
-        clearInterval(notificationInterval); // Clear previous notification interval
-        notificationInterval = setInterval(() => {
-          popupNotification.classList.add('show'); // Show the notification
-          setTimeout(() => {
-            popupNotification.classList.remove('show'); // Hide after 5 seconds
-          }, 5000);
-        }, 10000); // Check every 10 seconds
-
       } else {
         statusIndicator.style.backgroundColor = 'red';
         statusText.textContent = 'Down';
@@ -224,7 +214,6 @@
         loadWebsiteButton.style.display = 'none';
 
         clearInterval(notificationInterval); // Stop notification interval if down
-        popupNotification.classList.remove('show'); // Ensure it's hidden if server is down
         onlineNotification.style.display = 'none'; // Hide the green bar if the server is down
         clearInterval(dingInterval); // Stop the ding sound if the server goes back down
         hasAlerted = false; // Reset the alert flag if the server goes down
