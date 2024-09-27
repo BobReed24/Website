@@ -86,18 +86,19 @@
     </style>
     <script>
         function checkConnection() {
-            fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home', { method: 'HEAD', mode: 'no-cors' })
+            fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home', { method: 'HEAD', mode: 'cors' })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = 'https://bobreed24.github.io/Website/serverdown.html';
-                    } else {
                         window.location.href = 'https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home';
+                    } else {
+                        window.location.href = 'https://bobreed24.github.io/Website/serverdown.html';
                     }
                 })
                 .catch(() => {
-                    window.location.href = 'https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home';
+                    window.location.href = 'https://bobreed24.github.io/Website/serverdown.html';
                 });
         }
+
 
         // Delay the main script by 2.5 seconds
         window.onload = function() {
