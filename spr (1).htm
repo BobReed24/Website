@@ -86,16 +86,16 @@
     </style>
     <script>
         function checkConnection() {
-            fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io', { method: 'HEAD', mode: 'no-cors' })
+            fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home', { method: 'HEAD', mode: 'no-cors' })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = 'https://bobreed24.github.io/Website/';
+                        window.location.href = 'https://bobreed24.github.io/Website/serverdown.html';
                     } else {
-                        window.location.href = 'https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io';
+                        window.location.href = 'https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home';
                     }
                 })
                 .catch(() => {
-                    window.location.href = 'https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io';
+                    window.location.href = 'https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home';
                 });
         }
 
@@ -120,7 +120,7 @@
 
     <main class="container">
         <h1>Checking Connection...</h1>
-        <p>You will be redirected shortly. If you're not redirected, please <a href="https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io">click here</a>.</p>
+        <p>You will be redirected shortly. If you're not redirected, please <a href="https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home">click here</a>.</p>
     </main>
 </body>
 </html>
