@@ -75,6 +75,7 @@
       font-weight: bold;
       box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
       transition: bottom 0.5s ease-in-out;
+      cursor: pointer;
     }
 
     /* Show animation - slide up */
@@ -100,20 +101,66 @@
     #retryButton:hover {
       background-color: #343a40;
     }
+
+    /* Green notification bar at the bottom */
+    #onlineNotification {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #28a745;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      display: none;
+      z-index: 999;
+    }
+
+    #acknowledgeButton {
+      background-color: #ffffff;
+      color: #28a745;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+
+    #acknowledgeButton:hover {
+      background-color: #e0e0e0;
+    }
   </style>
 </head>
 
 <body>
   <main class="container">
     <h1>Site Status</h1>
-    <p>The site is currently down. We are working to get it back online as soon as possible.</p>
+    <p></p>
     <div id="statusIndicator" style="background-color: red;"></div>
     <p>Status: <span id="statusText">Down</span></p>
     <button id="retryButton">Retry Now</button>
   </main>
-  <div id="popupNotification">The site is back online!</div>
+
+  <div id="popupNotification">The site is back online! Click to acknowledge.</div>
+
+  <!-- Green bar notification -->
+  <div id="onlineNotification">
+    The site is back online! You can stop the sound by clicking "Acknowledge".
+    <button id="acknowledgeButton">Acknowledge</button>
+  </div>
+
+  <!-- Audio Element for Ding Sound -->
+  <audio id="dingSound" src="ding.mp3" preload="auto"></audio>
 
   <script>
+    let previousStatus = null; // Track previous server status (null = initial load, false = Down, true = Up)
+    let notificationInterval; // For notification interval
+    let dingInterval; // Interval to play the ding sound every 3 seconds
+    const dingSound = document.getElementById('dingSound');
+    const popupNotification = document.getElementById('popupNotification');
+    const onlineNotification = document.getElementById('onlineNotification');
+    const acknowledgeButton = document.getElementById('acknowledgeButton');
+
     const checkServer = async () => {
       try {
         const response = await fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/', { method: 'HEAD' });
@@ -127,27 +174,60 @@
       const isServerUp = await checkServer();
       const statusIndicator = document.getElementById('statusIndicator');
       const statusText = document.getElementById('statusText');
-      const popupNotification = document.getElementById('popupNotification');
 
       if (isServerUp) {
         statusIndicator.style.backgroundColor = 'green';
         statusText.textContent = 'Up';
-        popupNotification.classList.add('show'); // Show the notification by sliding up
 
-        // After 5 seconds, slide the bar back down
-        setTimeout(() => {
-          popupNotification.classList.remove('show');
-          popupNotification.classList.add('hide'); // Slide down
-        }, 5000);
+        // Only play the sound and show notification if the server status changes from down to up (not on initial load)
+        if (previousStatus === false) {
+          dingSound.play(); // Play the ding sound on transition to up
+          alert('The site is back online!');
+          onlineNotification.style.display = 'block'; // Show the green bar notification
+
+          // Play the ding sound every 3 seconds
+          dingInterval = setInterval(() => {
+            dingSound.play();
+          }, 3000);
+        }
+
+        // Show notification to check the page every 10 seconds
+        clearInterval(notificationInterval); // Clear previous notification interval
+        notificationInterval = setInterval(() => {
+          popupNotification.classList.add('show'); // Show the notification
+          setTimeout(() => {
+            popupNotification.classList.remove('show'); // Hide after 5 seconds
+          }, 5000);
+        }, 10000); // Check every 10 seconds
+
       } else {
         statusIndicator.style.backgroundColor = 'red';
         statusText.textContent = 'Down';
+        clearInterval(notificationInterval); // Stop notification interval if down
         popupNotification.classList.remove('show'); // Ensure it's hidden if server is down
-        popupNotification.classList.add('hide');
+        onlineNotification.style.display = 'none'; // Hide the green bar if the server is down
+        clearInterval(dingInterval); // Stop the ding sound if the server goes back down
       }
+
+      // Update previous status to current status after the first load
+      previousStatus = isServerUp;
     };
 
     document.getElementById('retryButton').addEventListener('click', updateStatus);
+
+    // User acknowledges notification
+    popupNotification.addEventListener('click', () => {
+      clearInterval(notificationInterval); // Stop notifications
+      popupNotification.classList.remove('show'); // Hide the notification
+    });
+
+    // Acknowledge button stops sound and hides the green bar
+    acknowledgeButton.addEventListener('click', () => {
+      clearInterval(dingInterval); // Stop playing the sound every 3 seconds
+      dingSound.pause(); // Stop the sound if playing
+      dingSound.currentTime = 0; // Reset the sound
+      onlineNotification.style.display = 'none'; // Hide the green bar
+    });
 
     // Check the server status continuously
     setInterval(updateStatus, 5000); // Refresh every 5 seconds
