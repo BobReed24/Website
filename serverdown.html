@@ -88,18 +88,19 @@
       bottom: -60px;
     }
 
-    #retryButton {
-      margin-top: 1.5rem;
-      background-color: #495057;
-      color: #f8f9fa;
+    #loadWebsiteButton {
+      display: none;
+      margin-top: 1rem;
+      background-color: #4caf50;
+      color: white;
       padding: 0.6rem 1.2rem;
       border: none;
       cursor: pointer;
       border-radius: 8px;
     }
 
-    #retryButton:hover {
-      background-color: #343a40;
+    #loadWebsiteButton:hover {
+      background-color: #45a049;
     }
 
     /* Green notification bar at the bottom */
@@ -138,7 +139,7 @@
     <p></p>
     <div id="statusIndicator" style="background-color: red;"></div>
     <p>Status: <span id="statusText">Down</span></p>
-    <button id="retryButton">Retry Now</button>
+    <button id="loadWebsiteButton" onclick="loadWebsite()">Load Website</button>
   </main>
 
   <div id="popupNotification">The site is back online! Click to acknowledge.</div>
@@ -156,10 +157,12 @@
     let previousStatus = null; // Track previous server status (null = initial load, false = Down, true = Up)
     let notificationInterval; // For notification interval
     let dingInterval; // Interval to play the ding sound every 3 seconds
+    let hasAlerted = false; // To ensure the alert only shows once
     const dingSound = document.getElementById('dingSound');
     const popupNotification = document.getElementById('popupNotification');
     const onlineNotification = document.getElementById('onlineNotification');
     const acknowledgeButton = document.getElementById('acknowledgeButton');
+    const loadWebsiteButton = document.getElementById('loadWebsiteButton'); // Load Website button
 
     const checkServer = async () => {
       try {
@@ -179,16 +182,26 @@
         statusIndicator.style.backgroundColor = 'green';
         statusText.textContent = 'Up';
 
+        // Show the "Load Website" button when the server is up
+        loadWebsiteButton.style.display = 'inline-block';
+
         // Only play the sound and show notification if the server status changes from down to up (not on initial load)
         if (previousStatus === false) {
-          dingSound.play(); // Play the ding sound on transition to up
-          alert('The site is back online!');
           onlineNotification.style.display = 'block'; // Show the green bar notification
+
+          // Play the ding sound on transition to up
+          dingSound.play();
 
           // Play the ding sound every 3 seconds
           dingInterval = setInterval(() => {
             dingSound.play();
           }, 3000);
+
+          // Alert the user only once after the server is up
+          if (!hasAlerted) {
+            alert('The site is back online!');
+            hasAlerted = true; // Ensure the alert only happens once
+          }
         }
 
         // Show notification to check the page every 10 seconds
@@ -203,23 +216,24 @@
       } else {
         statusIndicator.style.backgroundColor = 'red';
         statusText.textContent = 'Down';
+
+        // Hide the "Load Website" button when the server is down
+        loadWebsiteButton.style.display = 'none';
+
         clearInterval(notificationInterval); // Stop notification interval if down
         popupNotification.classList.remove('show'); // Ensure it's hidden if server is down
         onlineNotification.style.display = 'none'; // Hide the green bar if the server is down
         clearInterval(dingInterval); // Stop the ding sound if the server goes back down
+        hasAlerted = false; // Reset the alert flag if the server goes down
       }
 
       // Update previous status to current status after the first load
       previousStatus = isServerUp;
     };
 
-    document.getElementById('retryButton').addEventListener('click', updateStatus);
-
-    // User acknowledges notification
-    popupNotification.addEventListener('click', () => {
-      clearInterval(notificationInterval); // Stop notifications
-      popupNotification.classList.remove('show'); // Hide the notification
-    });
+    function loadWebsite() {
+      window.open('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home', '_blank'); // Replace 'https://example.com' with the actual URL to load
+    }
 
     // Acknowledge button stops sound and hides the green bar
     acknowledgeButton.addEventListener('click', () => {
