@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection Test</title>
+    <script>
+        function checkConnection() {
+            fetch('https://jerrystone.com', { method: 'HEAD', mode: 'no-cors' })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = 'https://jerrystone.com';
+                    } else {
+                        window.location.href = 'https://bobreed24.github.io/Website/serverdown.html';
+                    }
+                })
+                .catch(() => {
+                    window.location.href = 'https://bobreed24.github.io/Website/serverdown.html';
+                });
+        }
+    </script>
+</head>
+<body onload="checkConnection()">
+    <h1>Checking Connection...</h1>
+    <p>If you're not redirected, please <a href="https://jerrystone.com">click here</a>.</p>
+</body>
+</html>
