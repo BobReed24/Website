@@ -86,10 +86,10 @@
     </style>
     <script>
         function checkConnection() {
-            fetch('https://jerrystone.com', { method: 'HEAD', mode: 'no-cors' })
+            fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home', { method: 'HEAD', mode: 'no-cors' })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = 'https://jerrystone.com';
+                        window.location.href = 'https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home';
                     } else {
                         window.location.href = 'https://bobreed24.github.io/Website/serverdown.html';
                     }
