@@ -11,15 +11,16 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f4f8;
+            background-color: #121212; /* Dark background */
+            color: white; /* White text for dark mode */
         }
 
         main.container {
             text-align: center;
             max-width: 600px;
             padding: 2rem;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #1e1e1e; /* Darker container background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             border-radius: 12px;
             position: relative;
             z-index: 1;
@@ -28,11 +29,13 @@
         h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
+            color: white;
         }
 
         p {
             font-size: 1.2rem;
             margin-top: 1rem;
+            color: white; /* White text for the "Loading" message */
         }
 
         a {
@@ -51,7 +54,7 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(18, 18, 18, 0.9); /* Dark overlay */
             z-index: 999;
             transition: opacity 0.5s ease-in-out;
         }
@@ -68,6 +71,12 @@
             width: 60px;
             height: 60px;
             animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: white; /* White text for the loading label */
         }
 
         @keyframes spin {
@@ -90,17 +99,23 @@
                 });
         }
 
-        // Hide the loading animation after 3 seconds
+        // Delay the main script by 2.5 seconds
         window.onload = function() {
+            setTimeout(() => {
+                checkConnection();
+            }, 2500); // 2.5 seconds
+
+            // Hide the loading animation after 3 seconds
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
             }, 3000);
         };
     </script>
 </head>
-<body onload="checkConnection()">
+<body>
     <div id="loading">
         <div class="spinner"></div>
+        <p class="loading-text">Loading</p>
     </div>
 
     <main class="container">
