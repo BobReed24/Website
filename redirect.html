@@ -1,9 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading...</title>
+    <style>
+        /* Reset some basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #4a90e2, #50c9c3);
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #f0f0f0;
+        }
+
+        /* Animation for the loading text */
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
     <script>
         function checkConnection() {
             fetch('https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/home')
@@ -19,8 +75,12 @@
         }
     </script>
 </head>
+
 <body onload="checkConnection()">
-    <h1>Loading...</h1>
-    <p>If you are not redirected, please click <a href="https://bobreed24.github.io/serverdown.html">here</a>.</p>
+    <div class="container">
+        <h1>Loading...</h1>
+        <p>If you are not redirected, please click <a href="https://bobreed24.github.io/serverdown.html">here</a>.</p>
+    </div>
 </body>
+
 </html>
