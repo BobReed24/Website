@@ -199,7 +199,11 @@
           dingInterval = setInterval(() => {
             dingSound.play();
           }, 3000);
-
+          
+          // Alert the user only once after the server is up
+          if (!hasAlerted) {
+            alert('The site is back online!');
+            hasAlerted = true; // Ensure the alert only happens once
           }
         }
       } else {
