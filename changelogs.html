@@ -34,6 +34,17 @@
             </ul>
         </section>
     </main>
+            <hgroup>
+                <h2>How the login authentication works:</h2>
+                <li>1. Your client will create a token that is sent to the server</li>
+                <li>2. The server will recieve your client token and encrypt it</li>
+                <li>3. The server will send a new encrypted token to your client</li>
+                <li>4. Your client will send the login information through that encrypted token the server sent</li>
+                <li>5. The server will check the login information in the token your client sent</li>
+                <li>6. If everything checkout the server will send your client a new encrypted token telling it to login</li>
+                <li>7. Your client will send an encrypted token to the server with the other encrypted token the server sent your client</li>
+                <li>8. The server will then send your client an encrypted token with the user data allowing you to log in</li>
+            </hgroup>
 
     <footer class="container">
         <small><a href="https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/privacypolicy">Privacy Policy</a> • <a href="https://8000-gitpoddemos-votingapp-yrezjdikz9l.ws-us116.gitpod.io/terms">Terms of Service</a></small>
