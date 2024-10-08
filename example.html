@@ -15,7 +15,11 @@
             background: #f9f9f9;
         }
         input {
-            width: 100%;
+            width: 80%;
+            padding: 5px;
+            margin-top: 10px;
+        }
+        button {
             padding: 5px;
             margin-top: 10px;
         }
@@ -24,7 +28,8 @@
 <body onload="brython()">
     <h1>Embedded Python Console</h1>
     <div id="console"></div>
-    <input type="text" id="command" placeholder="Enter Python command..." onkeydown="if(event.key === 'Enter') runCommand()">
+    <input type="text" id="command" placeholder="Enter Python command...">
+    <button onclick="runCommand()">Enter</button>
     
     <script type="text/python">
         from browser import document
