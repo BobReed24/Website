@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Console</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
+    <style>
+        #console {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body onload="brython()">
+    <h1>Embedded Python Console</h1>
+    <div id="console"></div>
+    <input type="text" id="command" placeholder="Enter Python command..." onkeydown="if(event.key === 'Enter') runCommand()">
+    
+    <script type="text/python">
+        from browser import document
+
+        def runCommand():
+            command = document['command'].value
+            try:
+                result = eval(command)
+                output = f">>> {command}\n{result}\n"
+            except Exception as e:
+                output = f">>> {command}\nError: {e}\n"
+            document['console'].text += output
+            document['command'].value = ""
+            document['console'].scrollTop = document['console'].scrollHeight
+
+    </script>
+</body>
+</html>
