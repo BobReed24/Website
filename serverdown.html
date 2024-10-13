@@ -171,7 +171,7 @@
 
     const checkServer = async () => {
       try {
-        const response = await fetch('https://8000-gitpoddemos-votingapp-sbn9aw1bu6d.ws-us116.gitpod.io/', { method: 'HEAD' });
+        const response = await fetch('http://serveo.net:8000/home', { method: 'HEAD' });
         return response.ok;
       } catch {
         return false;
@@ -226,7 +226,7 @@
     };
 
     function loadWebsite() {
-      window.open('https://8000-gitpoddemos-votingapp-sbn9aw1bu6d.ws-us116.gitpod.io/home', '_blank'); // Replace 'https://example.com' with the actual URL to load
+      window.open('http://serveo.net:8000/home', '_blank'); // Replace 'https://example.com' with the actual URL to load
     }
 
     // Acknowledge button stops sound and hides the green bar
