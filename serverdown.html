@@ -171,7 +171,7 @@
 
     const checkServer = async () => {
       try {
-        const response = await fetch('http://serveo.net:8000/home', { method: 'HEAD' });
+        const response = await fetch('http://serveo.net:8999/home', { method: 'HEAD' });
         return response.ok;
       } catch {
         return false;
@@ -226,7 +226,7 @@
     };
 
     function loadWebsite() {
-      window.open('http://serveo.net:8000/home', '_blank'); // Replace 'https://example.com' with the actual URL to load
+      window.open('http://serveo.net:8999/home', '_blank'); // Replace 'https://example.com' with the actual URL to load
     }
 
     // Acknowledge button stops sound and hides the green bar
