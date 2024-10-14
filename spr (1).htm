@@ -86,7 +86,7 @@
     </style>
     <script>
         function checkConnection() {
-            fetch('http://serveo.net:8999/home', { method: 'HEAD', mode: 'cors' })
+            fetch('https://serveo.net:8999/home', { method: 'HEAD', mode: 'cors' })
                 .then(response => {
                     if (response.ok) {
                         window.location.href = 'https://serveo.net:8999/home';
