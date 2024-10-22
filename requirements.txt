@@ -1,6 +1,11 @@
 Flask
+Flask-CORS
+Flask-SocketIO
 Flask-WTF
 wtforms
-Werkzeug
-Flask-SocketIO
-Flask-Cors
+Flask-Mail
+mailjet-rest
+google-auth
+google-auth-oauthlib
+google-api-python-client
+requests
