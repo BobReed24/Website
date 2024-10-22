@@ -1,0 +1,15 @@
+zork1 : https://zork-playground.github.io/explore/games {iframe}
+
+tetris : https://bobreed24.github.io/tetrisben/ {iframe}
+
+pong : https://bobreed24.github.io/pong/ {iframe}
+
+cookieclicker : https://bobreed24.github.io/cookie/ {iframe}
+
+playback : https://bobreed24.github.io/playback/ {iframe}
+
+hangman : https://bobreed24.github.io/hangman/ {iframe}
+
+snowrider : https://bobreed24.github.io/snowrider/ {iframe}
+
+eagler : https://bobreed24.github.io/eagler/ {iframe}
