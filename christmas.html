@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>Christmas Countdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Mountains of Christmas', cursive;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            transition: all 0.5s ease-in-out;
+        }
+        .countdown, .lore {
+            display: none;
+        }
+        .countdown.active, .lore.active {
+            display: block;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .time {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #cc0000;
+        }
+        .lore-content {
+            font-size: 1.5em;
+            line-height: 1.5;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://placehold.co/1920x1080?text=Christmas+Background+with+Snow+and+Santa+Claus') no-repeat center center/cover;
+            z-index: -1;
+            filter: brightness(0.5);
+        }
+        .animated {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container countdown active animated">
+        <h1>Christmas Countdown</h1>
+        <div class="time" id="time"></div>
+        <button class="btn" onclick="showLore()">Learn About Christmas</button>
+    </div>
+    <div class="container lore animated">
+        <h1>The Lore of Christmas</h1>
+        <div class="lore-content">
+            <p>Christmas is celebrated on December 25th and is both a sacred religious holiday and a worldwide cultural and commercial phenomenon. For two millennia, people around the world have been observing it with traditions and practices that are both religious and secular in nature. Christians celebrate Christmas Day as the anniversary of the birth of Jesus of Nazareth, a spiritual leader whose teachings form the basis of their religion. Popular customs include exchanging gifts, decorating Christmas trees, attending church, sharing meals with family and friends, and, of course, waiting for Santa Claus to arrive.</p>
+        </div>
+        <button class="btn" onclick="showCountdown()">Back to Countdown</button>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const christmas = new Date(`December 25, ${year} 00:00:00`);
+            const diff = christmas - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('time').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        function showLore() {
+            document.querySelector('.countdown').classList.remove('active');
+            document.querySelector('.lore').classList.add('active');
+        }
+
+        function showCountdown() {
+            document.querySelector('.lore').classList.remove('active');
+            document.querySelector('.countdown').classList.add('active');
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
