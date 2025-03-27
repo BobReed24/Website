@@ -5,11 +5,7 @@ This project is a multi-page static website with various HTML files, styling, an
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 The project provides a flexible framework for creating a multi-page website with various functionalities, including templates, redirects, and network-related features.
@@ -21,13 +17,4 @@ The project provides a flexible framework for creating a multi-page website with
 - **Requirements management** via `requirements.txt`
 - **Utility Scripts** and configuration files for setting up the environment
 
-## Installation
 
-### Prerequisites
-- Docker (for containerized deployment)
-- Python 3.8+ (if running locally)
-
-### Clone the Repository
-```bash
-git clone https://github.com/yourusername/yourrepository.git
-cd yourrepository
