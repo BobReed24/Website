@@ -143,8 +143,6 @@
 <body>
   <main class="container">
     <h1>Site Status</h1>
-    <h2>Site is down for testing</h2>
-    <h2>Use this     <a href="https://8080-bobreed24-tproxy-rmjdnhxczya.ws-us117.gitpod.io/">site unblocker</a> while you wait</h2>
     <div id="statusIndicator" style="background-color: red;"></div>
     <p>Status: <span id="statusText">Down</span></p>
     <button id="loadWebsiteButton" onclick="loadWebsite()">Load Website</button>
@@ -173,7 +171,7 @@
 
     const checkServer = async () => {
       try {
-        const response = await fetch('https://2jrgfj0t-8000.usw3.devtunnels.ms/home', { method: 'HEAD' });
+        const response = await fetch('https://bl2tpk0g-8000.usw3.devtunnels.ms/home', { method: 'HEAD' });
         return response.ok;
       } catch {
         return false;
@@ -228,7 +226,7 @@
     };
 
     function loadWebsite() {
-      window.open('https://2jrgfj0t-8000.usw3.devtunnels.ms/', '_blank'); 
+      window.open('https://bl2tpk0g-8000.usw3.devtunnels.ms/', '_blank'); 
     }
 
     // Acknowledge button stops sound and hides the green bar
