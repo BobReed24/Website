@@ -160,13 +160,6 @@
 
 
     
-    <p1>WARN: The website is unreachable when connected to the <strong>school's network</strong> because it is blocked.</p1>
-    <br>
-    <p3><strong>However</strong>, a solution has been found and is currently being implemented.</p3>
-
-
-
-    
     <button disabled id="loadWebsiteButton" onclick="loadWebsite()">Load Website</button>
   </main>
 
@@ -193,7 +186,7 @@
 
     const checkServer = async () => {
       try {
-        const response = await fetch('https://bl2tpk0g-8000.usw3.devtunnels.ms/home', { method: 'HEAD' });
+        const response = await fetch('https://bobreedhunkon.diode.link:8080/home', { method: 'HEAD' });
         return response.ok;
       } catch {
         return false;
@@ -248,7 +241,7 @@
     };
 
     function loadWebsite() {
-      window.open('https://bl2tpk0g-8000.usw3.devtunnels.ms/', '_blank'); 
+      window.open('https://bobreedhunkon.diode.link:8080', '_blank'); 
     }
 
     // Acknowledge button stops sound and hides the green bar
