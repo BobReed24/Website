@@ -186,7 +186,7 @@
 
     const checkServer = async () => {
       try {
-        const response = await fetch('https://bobreedhunkonator.diode.link:8000/home', { method: 'HEAD' });
+        const response = await fetch('http://website.hunkon.social', { method: 'HEAD' });
         return response.ok;
       } catch {
         return false;
@@ -241,7 +241,7 @@
     };
 
     function loadWebsite() {
-      window.open('https://bobreedhunkonator.diode.link:8000/home', '_blank'); 
+      window.open('http://website.hunkon.social', '_blank'); 
     }
 
     // Acknowledge button stops sound and hides the green bar
