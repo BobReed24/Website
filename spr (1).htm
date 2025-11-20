@@ -86,16 +86,16 @@
     </style>
     <script>
         function checkConnection() {
-            fetch('http://website.hunkon.social', { method: 'HEAD', mode: 'cors' })
+            fetch('http://83.229.35.52/', { method: 'HEAD', mode: 'cors' })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = 'http://website.hunkon.social';
+                        window.location.href = 'http://83.229.35.52/';
                     } else {
-                        window.location.href = 'http://website.hunkon.sociall';
+                        window.location.href = 'http://83.229.35.52/l';
                     }
                 })
                 .catch(() => {
-                    window.location.href = 'http://website.hunkon.social';
+                    window.location.href = 'http://83.229.35.52/';
                 });
         }
 
@@ -121,7 +121,7 @@
 
     <main class="container">
         <h1>Checking Connection...</h1>
-        <p>You will be redirected shortly. If you're not redirected, please <a href="http://website.hunkon.social">click here</a>.</p>
+        <p>You will be redirected shortly. If you're not redirected, please <a href="http://83.229.35.52/">click here</a>.</p>
     </main>
     <div></div>
 </body>
