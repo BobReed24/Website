@@ -86,16 +86,16 @@
     </style>
     <script>
         function checkConnection() {
-            fetch('http://83.229.35.52/', { method: 'HEAD', mode: 'cors' })
+            fetch('http://138.128.243.243/', { method: 'HEAD', mode: 'cors' })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = 'http://83.229.35.52/';
+                        window.location.href = 'http://138.128.243.243/';
                     } else {
-                        window.location.href = 'http://83.229.35.52/l';
+                        window.location.href = 'http://138.128.243.243/';
                     }
                 })
                 .catch(() => {
-                    window.location.href = 'http://83.229.35.52/';
+                    window.location.href = 'http://138.128.243.243/';
                 });
         }
 
@@ -121,7 +121,7 @@
 
     <main class="container">
         <h1>Checking Connection...</h1>
-        <p>You will be redirected shortly. If you're not redirected, please <a href="http://83.229.35.52/">click here</a>.</p>
+        <p>You will be redirected shortly. If you're not redirected, please <a href="http://138.128.243.243/">click here</a>.</p>
     </main>
     <div></div>
 </body>
